@@ -9,7 +9,7 @@ task_bp=Blueprint('tasks',__name__)
 def view_task():
     if 'user_id' not in session:
         return redirect(url_for('auth.login'))
-    tasks=Task.query.all()
+    tasks = Task.query.filter_by(user_id=session['user_id']).all()
     return render_template("tasks.html",tasks=tasks)
 
 @task_bp.route("/add",methods=["GET", "POST"])

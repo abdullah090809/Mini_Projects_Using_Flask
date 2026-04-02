@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Add Task — TaskFlow{% endblock %}
+{% block title %}Edit Task — TaskFlow{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/add_task.css') }}">
@@ -8,7 +8,7 @@
 {% block content %}
 <div class="form-wrap">
     <div class="form-header">
-        <h1>New<br><span>Task.</span></h1>
+        <h1>Edit<br><span>Task.</span></h1>
         <p>Back to <a href="{{ url_for('tasks.view_task') }}">task list</a></p>
     </div>
 
@@ -17,7 +17,7 @@
 
         <div class="form-group">
             {{ form.title.label }}
-            {{ form.title(placeholder="What needs to be done?") }}
+            {{ form.title() }}
             {% if form.title.errors %}
                 <div class="form-errors">{% for e in form.title.errors %}{{ e }}{% endfor %}</div>
             {% endif %}
@@ -31,7 +31,7 @@
             {% endif %}
         </div>
 
-        <button type="submit" class="btn-submit">Add Task →</button>
+        <button type="submit" class="btn-submit">Update Task →</button>
     </form>
 </div>
 {% endblock %}

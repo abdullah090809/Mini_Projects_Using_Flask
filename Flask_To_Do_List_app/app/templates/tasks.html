@@ -27,7 +27,7 @@
 
 <div class="task-list">
     {% for task in tasks %}
-    <div class="task-card" style="animation-delay: {{ loop.index0 * 0.05 }}s">
+    <div class="task-card" style="--delay: {{ loop.index0 * 0.05 }}s">
         <div class="task-title">{{ task.title }}</div>
         <span class="task-status status-{{ task.status }}">{{ task.status | replace('_', ' ') }}</span>
         <div class="task-actions">
