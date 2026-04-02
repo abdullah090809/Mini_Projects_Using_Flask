@@ -66,6 +66,7 @@
     transition: border-color 0.2s;
     animation: slideIn 0.3s ease forwards;
     opacity: 0;
+    animation-delay: var(--delay, 0s);
 }
 
 @keyframes slideIn {
@@ -94,6 +95,9 @@
 .status-pending     { background: #1a1500; color: #f0b860; border: 1px solid #2a2000; }
 .status-in_progress { background: #001020; color: #60a0f0; border: 1px solid #001530; }
 .status-done        { background: #0d1a00; color: var(--accent); border: 1px solid #1a2a00; }
+
+.task-actions { display: flex; align-items: center; gap: 0.3rem; }
+.task-actions form { margin: 0; }
 
 .task-delete form { margin: 0; }
 

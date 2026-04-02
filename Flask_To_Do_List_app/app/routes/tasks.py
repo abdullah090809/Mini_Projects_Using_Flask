@@ -44,3 +44,17 @@ def clear_tasks():
     db.session.commit()
     flash('All tasks cleared!', 'success')
     return redirect(url_for('tasks.view_task'))
+
+@task_bp.route('/edit/<int:task_id>', methods=['GET', 'POST'])
+def edit_task(task_id):
+    if 'user_id' not in session:
+        return redirect(url_for('auth.login'))
+    task = Task.query.get(task_id)
+    form = TaskForm(obj=task)
+    if form.validate_on_submit():
+        task.title = form.title.data
+        task.status = form.status.data
+        db.session.commit()
+        flash('Task updated!', 'success')
+        return redirect(url_for('tasks.view_task'))
+    return render_template('edit_task.html', form=form, task=task)
