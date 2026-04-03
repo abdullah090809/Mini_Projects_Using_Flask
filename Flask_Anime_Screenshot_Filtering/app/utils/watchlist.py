@@ -5,8 +5,7 @@ def parse_watchlist(filepath):
         content = f.read()
 
     entries = []
-    # Match anime name (possibly multiline) followed by rating like (4.9/5)
-    pattern = re.compile(r"(.+?)\s*\((\d+(?:\.\d+)?\/5)\)", re.DOTALL)
+    pattern = re.compile(r"^\d+\.\s+([\s\S]+?)\s*\((\d+(?:\.\d+)?\/5)\)", re.MULTILINE)
 
     matches = pattern.finditer(content)
     for match in matches:
