@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, session, jsonify, flash
 import os
 import json
 from app.utils.watchlist import parse_watchlist
-from app.utils.ocr import extract_text, clean_text
+from app.utils.ocr import extract_text, clean_text, filter_with_gemini
 from app.utils.jikan import search_anime, is_confident_match
 from app.utils.matcher import match_against_watchlist
 from app.config import UPLOAD_FOLDER, DATA_FOLDER
@@ -52,7 +52,8 @@ def index():
             raw_text = extract_text(screenshot_path)
             cleaned = clean_text(raw_text)        
             cleaned = list(set(cleaned))
-            for chunk in cleaned:
+            filtered = filter_with_gemini(cleaned)
+            for chunk in filtered:
                 if chunk in already_seen:
                     continue
                 already_seen.add(chunk)
